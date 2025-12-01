@@ -1,23 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Timer1() {
   const [timer, setTimer] = useState(0);
-  const intervalRef = useRef(null);
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
+    const interval = setInterval(() => {
       setTimer((prev) => prev + 1);
     }, 1000);
 
     return () => {
-      clearInterval(intervalRef.current);
+      clearInterval(interval);
     };
   }, []);
 
   return (
     <div>
       Timer: {timer}
-      <button onClick={() => clearInterval(intervalRef.current)}>Pause</button>
+      <button onClick={() => clearInterval(interval)}>Pause</button>
     </div>
   );
 }
